@@ -19,10 +19,6 @@ class SearchBar extends Component {
         evt.preventDefault();
 
         this.props.onSubmit(this.state.name);
-
-        this.setState({
-            name: ''
-        })
     };
 
     render() {

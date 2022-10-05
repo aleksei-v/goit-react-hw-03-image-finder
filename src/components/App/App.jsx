@@ -24,7 +24,7 @@ class App extends Component {
       this.setState({
         imageName,
         images: [],
-        step: 1
+        step: 1,
       })
     } else {
        this.setState({
@@ -54,15 +54,17 @@ class App extends Component {
 
     try {
       this.setState ({isLoading: true})
-      const fetchedImages = await fetchImages(this.state.imageName, this.state.step)
+      const fetchedImages = await fetchImages(this.state.imageName, this.state.step);
+      
 
       fetchedImages.hits.length === 0
         ? Notify.failure("Unfortunately, there are no results for you")
         : this.setState(prevState => ({
-          images: [...prevState.images, ...fetchedImages.hits]
+          images: [...prevState.images, ...fetchedImages.hits],
         }),
           
         );
+       
     } catch (error) {
       console.log(error);
     }
@@ -74,8 +76,8 @@ class App extends Component {
     const { images, isLoading } = this.state;
    
     return (
+      
       <AppStyled>
-        
         <SearchBar onSubmit={this.onSubmit} />
         {isLoading && images.length === 0
           ? <Loader/>
